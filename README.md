@@ -1,3 +1,44 @@
+# Front-end development task (Star Wars Edition)
+
+## Scope:
+
+- Create a simple Star Wars Squad Builder.
+
+  1. See a Star Wars characters overview.
+  2. Search for a Star Wars character.
+  3. Access a Star Wars character detail view showcasing related character information.
+  4. Create a squad of 3/5 characters, based on the criteria below:
+
+  - no 2 squad members can be of same species.
+  - Your squad should persist during your session
+  - See & edit your whole squad
+
+## Tech stack
+
+- Tailwind CSS
+- NextJs
+- Typescript
+- GraphQL (Apollo)
+
+## Extras (optional)
+
+- tests
+- documentation
+- login (email, password)
+- set character as favorite
+- saving squad
+
+## Approach
+
+- read task
+- read the task again
+- consider tech stack (sure I will go with suggested)
+- create next app with Tailwind and Typescrpt
+- start writing documentation
+- sketch MVP
+- take out Xmas cookies from oven :D
+-
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
