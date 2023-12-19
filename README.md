@@ -2,7 +2,7 @@
 
 ## Scope:
 
-- Create a simple Star Wars Squad Builder.
+- Create a simple mobile first Star Wars Squad Builder.
 
   1. See a Star Wars characters overview.
   2. Search for a Star Wars character.
@@ -35,9 +35,10 @@
 - consider tech stack (sure I will go with suggested)
 - create next app with Tailwind and Typescrpt
 - start writing documentation
-- sketch MVP
+- check squad builders and star wars fun sites for inspiration
+- sketch wireframe
 - take out Xmas cookies from oven :D
--
+- check data with Postman
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
