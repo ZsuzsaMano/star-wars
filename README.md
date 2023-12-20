@@ -39,6 +39,10 @@
 - sketch wireframe
 - take out Xmas cookies from oven :D
 - check data with Postman
+- create components
+- add GraphQL
+- create logic
+- finish styling
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
