@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import Image from "next/image";
-import placeholderPic from "../assets/placeholder.png";
+import placeholderPic from "../app/assets/placeholder.png";
 
 export const Frame: FC = () => {
   return (
