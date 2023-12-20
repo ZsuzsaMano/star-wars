@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { People } from "./People";
 
 export const SearchBox: FC = () => {
   const handleSearch = (term: string) => {
@@ -10,7 +11,7 @@ export const SearchBox: FC = () => {
   };
   return (
     <section className="w-full p-2 my-4 rounded-md border border-black">
-      <div className="flex justify-between">
+      <div className="flex justify-between flex-wrap">
         <input
           className="p-2 text-sm outline-2 placeholder:text-gray-500 rounded-md"
           placeholder="character search"
@@ -30,11 +31,12 @@ export const SearchBox: FC = () => {
             <input type="radio" value="Divers" name="gender" /> Divers
           </span>
         </div>
+        <select name="species">
+          <option value="someOption">Species 1</option>
+          <option value="otherOption">Species 2</option>
+        </select>
       </div>
-      <select name="species">
-        <option value="someOption">Species 1</option>
-        <option value="otherOption">Species 2</option>
-      </select>
+      <People />
     </section>
   );
 };

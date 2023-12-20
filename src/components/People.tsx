@@ -11,6 +11,7 @@ export const People: FC = () => {
       allPeople {
         id
         name
+        image
         species {
           id
           name
@@ -23,16 +24,15 @@ export const People: FC = () => {
   if (loading) return <p>Loading...</p>;
 
   if (error) return <p>Error : {error.message}</p>;
-  console.log("data", data);
 
   return (
     <section>
-      <div className="flex flex-wrap gap-2 justify-between w-full my-2">
+      <div className="flex flex-wrap gap-2 justify-around w-full my-2">
         {data &&
           data.allPeople.map((person: any) => {
             return (
               <div key={person.id}>
-                <Frame />
+                <Frame person={person} />
               </div>
             );
           })}

@@ -12,11 +12,11 @@ export const Squad: FC = () => {
   return (
     <section className="w-full">
       <h2>Your Squad</h2>
-      <div className="flex justify-between w-full my-2">
-        {squad.map((person, i) => {
+      <div className="flex justify-between w-full my-2 flex-wrap">
+        {squad.map((person) => {
           return (
             <div key={person.id}>
-              <Frame />
+              <Frame person={person} />
             </div>
           );
         })}
