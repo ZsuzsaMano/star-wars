@@ -29,7 +29,7 @@ export const People: FC = () => {
     <section>
       <div className="flex flex-wrap gap-2 justify-between w-full my-2">
         {data &&
-          data.allPeople.map((person, i) => {
+          data.allPeople.map((person: any, i) => {
             return (
               <div key={person.id}>
                 <Frame />
