@@ -8,7 +8,13 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   plugins: [
-    plugin(function ({ addUtilities, theme }) {
+    plugin(function ({
+      addUtilities,
+      theme,
+    }: {
+      addUtilities: any;
+      theme: any;
+    }) {
       addUtilities({
         ".position-unset": {
           position: "unset",
