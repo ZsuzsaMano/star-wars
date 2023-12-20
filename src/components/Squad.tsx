@@ -4,13 +4,7 @@ import { Frame } from "./Frame";
 /** displaying the created squad */
 export const Squad: FC = () => {
   /**  state of squad */
-  const [squad, setSquad] = useState([
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-  ]);
+  const [squad, setSquad] = useState([{ id: 1 }, { id: 2 }, { id: 3 }]);
   return (
     <section className="w-full">
       <h2>Your Squad</h2>
