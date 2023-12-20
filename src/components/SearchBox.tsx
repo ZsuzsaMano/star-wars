@@ -1,11 +1,14 @@
 import React, { FC } from "react";
 import { People } from "./People";
 
+/** searchfield, gender radio button and species dropdown */
 export const SearchBox: FC = () => {
+  /** get the serach string*/
   const handleSearch = (term: string) => {
     console.log(term);
   };
 
+  /** get the gender */
   const onGenderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e.currentTarget.value);
   };
@@ -22,13 +25,13 @@ export const SearchBox: FC = () => {
 
         <div onChange={onGenderChange} className="flex flex-col">
           <span>
-            <input type="radio" value="Male" name="gender" /> Male
+            <input type="checkbox" value="Male" name="gender" /> Male
           </span>
           <span>
-            <input type="radio" value="Female" name="gender" /> Female
+            <input type="checkbox" value="Female" name="gender" /> Female
           </span>
           <span>
-            <input type="radio" value="Divers" name="gender" /> Divers
+            <input type="checkbox" value="Divers" name="gender" /> Divers
           </span>
         </div>
         <select name="species">

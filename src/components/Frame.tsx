@@ -3,7 +3,11 @@ import Image from "next/image";
 import placeholderPic from "../app/assets/placeholder.png";
 import { Person } from "@/types/shared.types";
 
-export const Frame: FC<{ person: Person | null }> = ({ person }) => {
+/** cards used both in squad and search results */
+export const Frame: FC<{ person: Person | null; isSquad: boolean }> = ({
+  person,
+  isSquad,
+}) => {
   console.log("person", person);
   return (
     <div className="shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] w-36 h-56 rounded-md ">

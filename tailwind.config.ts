@@ -100,7 +100,7 @@ const config: Config = {
       "2xl": "1.875rem",
       "3xl": "2rem",
       "4xl": "2.25rem",
-      "5xl": "2.5rem",
+      "5xl": "4.5rem",
     },
   },
 };

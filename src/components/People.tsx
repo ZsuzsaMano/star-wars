@@ -4,8 +4,11 @@ import { useState, FC, useEffect } from "react";
 import { useQuery, gql } from "@apollo/client";
 import { Frame } from "./Frame";
 
+/** displaying filtered characters based on serach */
 export const People: FC = () => {
   const [searchResults, setSearchResults] = useState([]);
+
+  /** get characters based on search filters */
   const GET_PEOPLE = gql`
     query allPeople {
       allPeople {
@@ -20,6 +23,7 @@ export const People: FC = () => {
     }
   `;
 
+  /** this is what the graphQl query returns */
   const { data, error, loading } = useQuery(GET_PEOPLE);
   if (loading) return <p>Loading...</p>;
 
@@ -32,7 +36,7 @@ export const People: FC = () => {
           data.allPeople.map((person: any) => {
             return (
               <div key={person.id}>
-                <Frame person={person} />
+                <Frame person={person} isSquad={false} />
               </div>
             );
           })}
