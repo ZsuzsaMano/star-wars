@@ -1,11 +1,16 @@
 "use client";
 
-import { useState, FC, useEffect } from "react";
+import { useState, FC, useEffect, Dispatch, SetStateAction } from "react";
 import { useQuery, gql } from "@apollo/client";
 import { Frame } from "./Frame";
+import { Person } from "@/types/shared.types";
+
+interface People {
+  setSquad: Dispatch<SetStateAction<Person[] | null>>;
+}
 
 /** displaying filtered characters based on serach */
-export const People: FC = () => {
+export const People: FC<People> = ({ setSquad }) => {
   const [searchResults, setSearchResults] = useState([]);
 
   /** get characters based on search filters */
@@ -36,7 +41,7 @@ export const People: FC = () => {
           data.allPeople.map((person: any) => {
             return (
               <div key={person.id}>
-                <Frame person={person} isSquad={false} />
+                <Frame person={person} isSquad={false} setSquad={setSquad} />
               </div>
             );
           })}

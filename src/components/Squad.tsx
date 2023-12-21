@@ -1,16 +1,14 @@
-import { useState, FC } from "react";
+import React, { FC, Dispatch, SetStateAction } from "react";
 import { Frame } from "./Frame";
 import { Person } from "@/types/shared.types";
 
-/** displaying the created squad */
-export const Squad: FC = () => {
-  /**  state of squad */
-  const [squad, setSquad] = useState<Person[] | null>([
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-  ]);
+interface SquadProps {
+  setSquad: Dispatch<SetStateAction<Person[] | null>>;
+  squad: Person[] | null;
+}
 
+/** displaying the created squad */
+export const Squad: FC<SquadProps> = ({ setSquad, squad }) => {
   return (
     <section className="w-full">
       <h2>Your Squad</h2>
