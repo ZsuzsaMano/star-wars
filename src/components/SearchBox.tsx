@@ -10,7 +10,7 @@ export const SearchBox: FC = () => {
 
   /** get the gender */
   const onGenderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.currentTarget.value);
+    console.log(e.target.value);
   };
   return (
     <section className="w-full p-2 my-4 rounded-md border border-black">
@@ -25,13 +25,16 @@ export const SearchBox: FC = () => {
 
         <div onChange={onGenderChange} className="flex flex-col">
           <span>
-            <input type="checkbox" value="Male" name="gender" /> Male
+            <input type="radio" value="Male" name="gender" /> Male
           </span>
           <span>
-            <input type="checkbox" value="Female" name="gender" /> Female
+            <input type="radio" value="Female" name="gender" /> Female
           </span>
           <span>
-            <input type="checkbox" value="Divers" name="gender" /> Divers
+            <input type="radio" value="Divers" name="gender" /> Divers
+          </span>
+          <span>
+            <input type="radio" value="All" name="gender" /> All
           </span>
         </div>
         <select name="species">
