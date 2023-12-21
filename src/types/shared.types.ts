@@ -1,11 +1,18 @@
-export interface Person {
+import { Dispatch, SetStateAction } from "react";
+
+export interface PersonProps {
   id: number;
   name?: string;
   image?: string;
-  species?: Species;
+  species?: SpeciesProps;
 }
 
-export interface Species {
+export interface SpeciesProps {
   id: number;
   name: string;
+}
+
+export interface SquadProps {
+  setSquad: Dispatch<SetStateAction<PersonProps[] | null>>;
+  squad: PersonProps[] | null;
 }

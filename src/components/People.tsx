@@ -3,14 +3,14 @@
 import { useState, FC, useEffect, Dispatch, SetStateAction } from "react";
 import { useQuery, gql } from "@apollo/client";
 import { Frame } from "./Frame";
-import { Person } from "@/types/shared.types";
+import { PersonProps, SquadProps } from "@/types/shared.types";
 
-interface People {
-  setSquad: Dispatch<SetStateAction<Person[] | null>>;
+interface People extends SquadProps {
+  setSquad: Dispatch<SetStateAction<PersonProps[] | null>>;
 }
 
 /** displaying filtered characters based on serach */
-export const People: FC<People> = ({ setSquad }) => {
+export const People: FC<People> = ({ setSquad, squad }) => {
   const [searchResults, setSearchResults] = useState([]);
 
   /** get characters based on search filters */
@@ -41,7 +41,12 @@ export const People: FC<People> = ({ setSquad }) => {
           data.allPeople.map((person: any) => {
             return (
               <div key={person.id}>
-                <Frame person={person} isSquad={false} setSquad={setSquad} />
+                <Frame
+                  person={person}
+                  isSquad={false}
+                  setSquad={setSquad}
+                  squad={squad}
+                />
               </div>
             );
           })}

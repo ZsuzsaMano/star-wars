@@ -1,13 +1,9 @@
 import React, { FC, Dispatch, SetStateAction } from "react";
 import { People } from "./People";
-import { Person } from "@/types/shared.types";
-
-interface SearchBoxProps {
-  setSquad: Dispatch<SetStateAction<Person[] | null>>;
-}
+import { PersonProps, SquadProps } from "@/types/shared.types";
 
 /** searchfield, gender radio button and species dropdown */
-export const SearchBox: FC<SearchBoxProps> = ({ setSquad }) => {
+export const SearchBox: FC<SquadProps> = ({ setSquad, squad }) => {
   /** get the serach string*/
   const handleSearch = (term: string) => {
     console.log(term);
@@ -47,7 +43,7 @@ export const SearchBox: FC<SearchBoxProps> = ({ setSquad }) => {
           <option value="otherOption">Species 2</option>
         </select>
       </div>
-      <People setSquad={setSquad} />
+      <People setSquad={setSquad} squad={squad} />
     </section>
   );
 };

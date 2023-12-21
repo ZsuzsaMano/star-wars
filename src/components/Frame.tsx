@@ -1,24 +1,30 @@
 import React, { FC, Dispatch, SetStateAction } from "react";
 import Image from "next/image";
 import placeholderPic from "../app/assets/placeholder.png";
-import { Person } from "@/types/shared.types";
+import { PersonProps, SquadProps } from "@/types/shared.types";
 import classNames from "classnames";
 
-interface Frame {
-  person: Person | null;
+interface Frame extends SquadProps {
+  person: PersonProps | null;
   isSquad: boolean;
-  setSquad: Dispatch<SetStateAction<Person[] | null>>;
 }
 
 /** cards used both in squad and search results */
-export const Frame: FC<Frame> = ({ person, isSquad, setSquad }) => {
+export const Frame: FC<Frame> = ({ person, isSquad, setSquad, squad }) => {
+  /**add to and remove from squad*/
   const handleSquadChange = () => {
-    if (person) {
-      setSquad((prevSquad) => [
-        ...(prevSquad || []),
-        { id: person.id, image: person.image },
-      ]);
-    }
+    if (person && squad)
+      if (isSquad) {
+        /** in squad component remove*/
+        setSquad(squad.filter((item) => item.id !== person.id));
+      } else {
+        /** in People component add characters up to 5 person */
+        if (squad.length < 5)
+          setSquad((prevSquad) => [
+            ...(prevSquad || []),
+            { id: person.id, image: person.image },
+          ]);
+      }
   };
   return (
     <div
@@ -40,7 +46,7 @@ export const Frame: FC<Frame> = ({ person, isSquad, setSquad }) => {
             className="absolute top-1 left-4 w-10 h-10 text-5xl"
             onClick={handleSquadChange}
           >
-            +
+            {isSquad ? "-" : "+"}
           </button>
         </div>
         <figcaption className="p-2 text-center">
