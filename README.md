@@ -1,3 +1,56 @@
+<section align="center">
+  <a href="https://starwars-squad.netlify.app/">
+    <img src="./readme.png" alt="Logo" >
+  </a>
+  <br>
+    <br>
+ <p>Built with: NextJS, Typescript, Tailwind, GraphQL
+    <p>
+ <p> Tested with: Jest
+    <p>
+
+</section>
+
+---
+
+# Star Wars Squad Builder Documentation
+
+### Overview
+
+Welcome to the Star Wars Squad Builder, a mobile-first application designed for assembling your ultimate Star Wars character squad. This documentation provides a comprehensive guide on the functionalities and features of the application.
+
+### Features
+
+- ##### Star Wars Characters Overview:
+  View a comprehensive overview of various Star Wars characters.
+- ##### Search for a Star Wars Character:
+  Utilize the search functionality to find specific Star Wars characters easily.
+- ##### Star Wars Character Detail View:
+  Access a detailed view of a selected Star Wars character, showcasing relevant character information.
+- ##### Create and Manage Your Squad:
+  Create a squad with a maximum of 5 characters.
+  Ensure diversity in your squad by restricting members of the same species.
+  Edit your entire squad as needed.
+
+### Squad Building Criteria
+
+- ##### Species Restriction:
+  No two squad members can belong to the same species, ensuring a diverse and dynamic squad.
+
+### Interactive Squad Management
+
+- ##### Adding and Removing Characters:
+
+  Clicking on a character's image adds them to your squad.
+  If a character is already in the squad, clicking on their image will remove them.
+
+- ##### Species Filter:
+
+  Characters of a species already in the squad won't appear in the search results, preventing duplicates.
+
+- ##### More Info:
+  Clicking on "More Info" opens a new window, allowing you to explore additional details about a character.
+
 # Front-end development task (Star Wars Edition)
 
 ## Scope:
