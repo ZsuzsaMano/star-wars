@@ -34,13 +34,25 @@ export const Frame: FC<Frame> = ({
   /** if person already in Squad dont show it in search results*/
   if (!isSquad && squad?.filter((item) => item.id === person?.id).length != 0)
     return null;
-
+  /** if species already in Squad dont show it in search results*/
+  if (
+    !isSquad &&
+    squad?.filter((item) => item.species === person?.species).length != 0
+  )
+    return null;
+  /** filter by gender*/
   if (
     !isSquad &&
     person?.gender != filterValues?.gender &&
     filterValues?.gender != "all"
   )
-    /** filter by gender*/
+    return null;
+  /** filter by name*/
+  if (
+    filterValues &&
+    !isSquad &&
+    !person?.name?.toLowerCase().includes(filterValues.name.toLowerCase())
+  )
     return null;
   if (person)
     return (
@@ -68,9 +80,7 @@ export const Frame: FC<Frame> = ({
           </div>
           <figcaption className="p-2 text-center">
             <strong>{person.name}</strong>
-            <p className={classNames(isSquad && "hidden")}>
-              {person.species?.name}
-            </p>
+            <p>{person.species?.name}</p>
           </figcaption>
         </figure>
       </div>
