@@ -3,14 +3,14 @@
 import { useState, FC, useEffect, Dispatch, SetStateAction } from "react";
 import { useQuery, gql } from "@apollo/client";
 import { Frame } from "./Frame";
-import { PersonProps, SquadProps } from "@/types/shared.types";
+import { PersonProps, SearchProps, SquadProps } from "@/types/shared.types";
 
 interface People extends SquadProps {
-  setSquad: Dispatch<SetStateAction<PersonProps[] | null>>;
+  filterValues: SearchProps;
 }
 
 /** displaying filtered characters based on serach */
-export const People: FC<People> = ({ setSquad, squad }) => {
+export const People: FC<People> = ({ setSquad, squad, filterValues }) => {
   const [searchResults, setSearchResults] = useState([]);
 
   /** get characters based on search filters */
@@ -20,6 +20,7 @@ export const People: FC<People> = ({ setSquad, squad }) => {
         id
         name
         image
+        gender
         species {
           id
           name
@@ -30,6 +31,9 @@ export const People: FC<People> = ({ setSquad, squad }) => {
 
   /** this is what the graphQl query returns */
   const { data, error, loading } = useQuery(GET_PEOPLE);
+  // useEffect(() => {
+  //   data && setSearchResults(data);
+  // }, [data]);
   if (loading) return <p>Loading...</p>;
 
   if (error) return <p>Error : {error.message}</p>;
@@ -46,6 +50,7 @@ export const People: FC<People> = ({ setSquad, squad }) => {
                   isSquad={false}
                   setSquad={setSquad}
                   squad={squad}
+                  filterValues={filterValues}
                 />
               </div>
             );

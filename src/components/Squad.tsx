@@ -7,7 +7,10 @@ export const Squad: FC<SquadProps> = ({ setSquad, squad }) => {
   return (
     <section className="w-full">
       <h2>Your Squad</h2>{" "}
-      <span>Add from search results 3 to 5 different species characters</span>
+      <span>
+        Include up to <strong> five </strong> characters of various species from
+        the search results
+      </span>
       <div className="flex justify-around w-full my-2 flex-wrap gap-2">
         {squad &&
           squad.map((person) => {

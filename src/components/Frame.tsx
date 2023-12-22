@@ -1,16 +1,23 @@
 import React, { FC, Dispatch, SetStateAction } from "react";
 import Image from "next/image";
 import placeholderPic from "../app/assets/placeholder.png";
-import { PersonProps, SquadProps } from "@/types/shared.types";
+import { PersonProps, SearchProps, SquadProps } from "@/types/shared.types";
 import classNames from "classnames";
 
 interface Frame extends SquadProps {
   person: PersonProps | null;
   isSquad: boolean;
+  filterValues?: SearchProps;
 }
 
 /** cards used both in squad and search results */
-export const Frame: FC<Frame> = ({ person, isSquad, setSquad, squad }) => {
+export const Frame: FC<Frame> = ({
+  person,
+  isSquad,
+  setSquad,
+  squad,
+  filterValues,
+}) => {
   /**add to and remove from squad*/
   const handleSquadChange = () => {
     if (person && squad)
@@ -26,6 +33,14 @@ export const Frame: FC<Frame> = ({ person, isSquad, setSquad, squad }) => {
 
   /** if person already in Squad dont show it in search results*/
   if (!isSquad && squad?.filter((item) => item.id === person?.id).length != 0)
+    return null;
+
+  if (
+    !isSquad &&
+    person?.gender != filterValues?.gender &&
+    filterValues?.gender != "all"
+  )
+    /** filter by gender*/
     return null;
   if (person)
     return (

@@ -1,49 +1,57 @@
-import React, { FC, Dispatch, SetStateAction } from "react";
+import React, { FC, Dispatch, SetStateAction, useState } from "react";
 import { People } from "./People";
-import { PersonProps, SquadProps } from "@/types/shared.types";
+import { useQuery, gql } from "@apollo/client";
+import { PersonProps, SearchProps, SquadProps } from "@/types/shared.types";
 
 /** searchfield, gender radio button and species dropdown */
 export const SearchBox: FC<SquadProps> = ({ setSquad, squad }) => {
+  const [filterValues, setFilterValues] = useState<SearchProps>({
+    name: "",
+    gender: "all",
+  });
+
   /** get the serach string*/
   const handleSearch = (term: string) => {
-    console.log(term);
+    setFilterValues({ ...filterValues, name: term } as SearchProps);
   };
 
   /** get the gender */
   const onGenderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+    setFilterValues({ ...filterValues, gender: e.target.value } as SearchProps);
   };
   return (
     <section className="w-full p-2 my-4 rounded-md border border-black">
-      <div className="flex justify-between flex-wrap">
+      <div className="flex flex-wrap">
         <input
-          className="p-2 text-sm outline-2 placeholder:text-gray-500 rounded-md"
+          className="p-2 text-sm w-full md:w-1/2 outline-2 placeholder:text-gray-500 rounded-md"
           placeholder="character search"
           onChange={(e) => {
             handleSearch(e.target.value);
           }}
         />
 
-        <div onChange={onGenderChange} className="flex flex-col">
+        <div onChange={onGenderChange} className="flex gap-4 items-center">
           <span>
-            <input type="radio" value="Male" name="gender" /> Male
+            <input
+              type="radio"
+              value="male"
+              name="gender"
+              className="md:ml-4"
+            />{" "}
+            Male
           </span>
           <span>
-            <input type="radio" value="Female" name="gender" /> Female
+            <input type="radio" value="female" name="gender" /> Female
           </span>
           <span>
-            <input type="radio" value="Divers" name="gender" /> Divers
+            <input type="radio" value="hermaphrodite" name="gender" /> Divers
           </span>
           <span>
-            <input type="radio" value="All" name="gender" /> All
+            <input type="radio" value="all" name="gender" /> All
           </span>
         </div>
-        <select name="species">
-          <option value="someOption">Species 1</option>
-          <option value="otherOption">Species 2</option>
-        </select>
       </div>
-      <People setSquad={setSquad} squad={squad} />
+      <People setSquad={setSquad} squad={squad} filterValues={filterValues} />
     </section>
   );
 };

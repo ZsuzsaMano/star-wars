@@ -5,6 +5,7 @@ export interface PersonProps {
   name?: string;
   image?: string;
   species?: SpeciesProps;
+  gender?: string;
 }
 
 export interface SpeciesProps {
@@ -15,4 +16,9 @@ export interface SpeciesProps {
 export interface SquadProps {
   setSquad: Dispatch<SetStateAction<PersonProps[] | null>>;
   squad: PersonProps[] | null;
+}
+
+export interface SearchProps {
+  name: string;
+  gender: "male" | "female" | "hermaphrodite" | "all";
 }
