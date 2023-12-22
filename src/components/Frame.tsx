@@ -1,8 +1,8 @@
-import React, { FC, Dispatch, SetStateAction } from "react";
+import React, { FC } from "react";
 import Image from "next/image";
-import placeholderPic from "../app/assets/placeholder.png";
 import { PersonProps, SearchProps, SquadProps } from "@/types/shared.types";
 import classNames from "classnames";
+import { MoreInfoButton } from "./MoreInfoButton";
 
 interface Frame extends SquadProps {
   person: PersonProps | null;
@@ -82,6 +82,7 @@ export const Frame: FC<Frame> = ({
             <strong>{person.name}</strong>
             <p>{person.species?.name}</p>
           </figcaption>
+          <MoreInfoButton personId={person.id} />
         </figure>
       </div>
     );

@@ -31,9 +31,7 @@ export const People: FC<People> = ({ setSquad, squad, filterValues }) => {
 
   /** this is what the graphQl query returns */
   const { data, error, loading } = useQuery(GET_PEOPLE);
-  // useEffect(() => {
-  //   data && setSearchResults(data);
-  // }, [data]);
+
   if (loading) return <p>Loading...</p>;
 
   if (error) return <p>Error : {error.message}</p>;
