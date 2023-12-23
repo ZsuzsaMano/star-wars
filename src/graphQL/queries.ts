@@ -10,9 +10,6 @@ export const GET_PERSON = gql`
       films {
         title
       }
-      homeworld {
-        name
-      }
       mass
       image
       gender
@@ -23,23 +20,6 @@ export const GET_PERSON = gql`
       species {
         language
         name
-      }
-      starships {
-        image
-        manufacturer
-        model
-        name
-        pilots {
-          name
-        }
-      }
-      vehicles {
-        manufacturer
-        name
-        model
-        pilots {
-          name
-        }
       }
     }
   }
