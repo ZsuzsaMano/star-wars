@@ -1,9 +1,11 @@
 import React, { FC, Dispatch, SetStateAction } from "react";
 import { Frame } from "./Frame";
-import { SquadProps } from "@/types/shared.types";
+import { useSquadStore } from "@/store/zustand";
 
 /** displaying the created squad */
-export const Squad: FC<SquadProps> = ({ setSquad, squad }) => {
+export const Squad: FC = () => {
+  const { squad } = useSquadStore();
+
   return (
     <section className="w-full">
       <h2>Your Squad</h2>{" "}
@@ -16,12 +18,7 @@ export const Squad: FC<SquadProps> = ({ setSquad, squad }) => {
           squad.map((person) => {
             return (
               <div key={person.id}>
-                <Frame
-                  person={person}
-                  isSquad={true}
-                  setSquad={setSquad}
-                  squad={squad}
-                />
+                <Frame person={person} isSquad={true} />
               </div>
             );
           })}

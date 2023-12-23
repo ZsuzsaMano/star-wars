@@ -1,10 +1,9 @@
-import React, { FC, Dispatch, SetStateAction, useState } from "react";
+import React, { FC, useState } from "react";
 import { People } from "./People";
-import { useQuery, gql } from "@apollo/client";
-import { PersonProps, SearchProps, SquadProps } from "@/types/shared.types";
+import { SearchProps } from "@/types/shared.types";
 
 /** searchfield, gender radio button and species dropdown */
-export const SearchBox: FC<SquadProps> = ({ setSquad, squad }) => {
+export const SearchBox: FC = () => {
   const [filterValues, setFilterValues] = useState<SearchProps>({
     name: "",
     gender: "all",
@@ -51,7 +50,7 @@ export const SearchBox: FC<SquadProps> = ({ setSquad, squad }) => {
           </span>
         </div>
       </div>
-      <People setSquad={setSquad} squad={squad} filterValues={filterValues} />
+      <People filterValues={filterValues} />
     </section>
   );
 };

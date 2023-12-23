@@ -3,33 +3,25 @@ import Image from "next/image";
 import { PersonProps, SearchProps, SquadProps } from "@/types/shared.types";
 import classNames from "classnames";
 import { MoreInfoButton } from "./MoreInfoButton";
+import { useSquadStore } from "@/store/zustand";
 
-interface Frame extends SquadProps {
+interface Frame {
   person: PersonProps | null;
   isSquad: boolean;
   filterValues?: SearchProps;
 }
 
 /** cards used both in squad and search results */
-export const Frame: FC<Frame> = ({
-  person,
-  isSquad,
-  setSquad,
-  squad,
-  filterValues,
-}) => {
-  /**add to and remove from squad*/
-  const handleSquadChange = () => {
-    if (person && squad)
-      if (isSquad) {
-        /** in squad component remove*/
-        setSquad(squad.filter((item) => item.id !== person.id));
-      } else {
-        /** in People component add characters up to 5 person */
-        if (squad.length < 5)
-          setSquad((prevSquad) => [...(prevSquad || []), person]);
-      }
-  };
+export const Frame: FC<Frame> = ({ person, isSquad, filterValues }) => {
+  const { squad, addToSquad, removeFromSquad } = useSquadStore((state) => {
+    return {
+      squad: state.squad,
+      /** add to squad component */
+      addToSquad: state.addToSquad,
+      /** in squad component remove*/
+      removeFromSquad: state.removeFromSquad,
+    };
+  });
 
   /** if person already in Squad dont show it in search results*/
   if (!isSquad && squad?.filter((item) => item.id === person?.id).length != 0)
@@ -73,7 +65,11 @@ export const Frame: FC<Frame> = ({
             />
             <button
               className="absolute top-1 left-4 w-10 h-10 text-5xl"
-              onClick={handleSquadChange}
+              onClick={
+                isSquad
+                  ? () => removeFromSquad(person)
+                  : () => addToSquad(person)
+              }
             >
               {isSquad ? "-" : "+"}
             </button>

@@ -4,7 +4,7 @@
   </a>
   <br>
     <br>
- <p>Built with: NextJS, Typescript, Tailwind, GraphQL
+ <p>Built with: NextJS, Typescript, Tailwind, GraphQL, Zustand
     <p>
  <p> Tested with: Jest
     <p>
@@ -95,6 +95,7 @@ Welcome to the Star Wars Squad Builder, a mobile-first application designed for 
 - create components
 - add GraphQL
 - create logic
+- add Zustand
 - finish styling
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
