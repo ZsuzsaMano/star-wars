@@ -21,17 +21,16 @@ export const People: FC<People> = ({ filterValues }) => {
 
   return (
     <section>
-      <div className="flex flex-wrap gap-2 justify-around w-full my-2">
+      <div className="flex flex-wrap gap-2 md:gap-4 w-full my-2 justify-center">
         {data &&
           data.allPeople.map((person: any) => {
             return (
-              <div key={person.id}>
-                <Frame
-                  person={person}
-                  isSquad={false}
-                  filterValues={filterValues}
-                />
-              </div>
+              <Frame
+                key={person.id}
+                person={person}
+                isSquad={false}
+                filterValues={filterValues}
+              />
             );
           })}
       </div>

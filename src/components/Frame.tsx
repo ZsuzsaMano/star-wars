@@ -6,6 +6,7 @@ import { MoreInfoButton } from "./MoreInfoButton";
 import { useSquadStore } from "@/store/zustand";
 
 interface Frame {
+  key: number;
   person: PersonProps | null;
   isSquad: boolean;
   filterValues?: SearchProps;
