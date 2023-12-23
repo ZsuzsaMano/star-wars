@@ -4,30 +4,15 @@ import { useState, FC, useEffect, Dispatch, SetStateAction } from "react";
 import { useQuery, gql } from "@apollo/client";
 import { Frame } from "./Frame";
 import { PersonProps, SearchProps, SquadProps } from "@/types/shared.types";
+import { GET_PEOPLE } from "@/graphQL/queries";
 
-interface People extends SquadProps {
+type People = SquadProps & {
   filterValues: SearchProps;
-}
+};
 
 /** displaying filtered characters based on serach */
 export const People: FC<People> = ({ setSquad, squad, filterValues }) => {
   const [searchResults, setSearchResults] = useState([]);
-
-  /** get characters based on search filters */
-  const GET_PEOPLE = gql`
-    query allPeople {
-      allPeople {
-        id
-        name
-        image
-        gender
-        species {
-          id
-          name
-        }
-      }
-    }
-  `;
 
   /** this is what the graphQl query returns */
   const { data, error, loading } = useQuery(GET_PEOPLE);

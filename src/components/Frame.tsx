@@ -4,11 +4,11 @@ import { PersonProps, SearchProps, SquadProps } from "@/types/shared.types";
 import classNames from "classnames";
 import { MoreInfoButton } from "./MoreInfoButton";
 
-interface Frame extends SquadProps {
+type Frame = SquadProps & {
   person: PersonProps | null;
   isSquad: boolean;
   filterValues?: SearchProps;
-}
+};
 
 /** cards used both in squad and search results */
 export const Frame: FC<Frame> = ({

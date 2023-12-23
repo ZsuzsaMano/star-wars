@@ -1,24 +1,24 @@
 import { Dispatch, SetStateAction } from "react";
 
-export interface PersonProps {
+export type PersonProps = {
   id: number;
   name?: string;
   image?: string;
   species?: SpeciesProps;
   gender?: string;
-}
+};
 
-export interface SpeciesProps {
+export type SpeciesProps = {
   id: number;
   name: string;
-}
+};
 
-export interface SquadProps {
+export type SquadProps = {
   setSquad: Dispatch<SetStateAction<PersonProps[] | null>>;
   squad: PersonProps[] | null;
-}
+};
 
-export interface SearchProps {
+export type SearchProps = {
   name: string;
   gender: "male" | "female" | "hermaphrodite" | "all";
-}
+};

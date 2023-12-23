@@ -1,7 +1,7 @@
 "use client";
 import React, { FC, useState } from "react";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import client from "../apollo_client";
+import client from "../graphQL/apollo_client";
 
 import { Squad } from "../components/Squad";
 import { SearchBox } from "../components/SearchBox";

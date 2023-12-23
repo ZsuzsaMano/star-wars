@@ -1,55 +1,13 @@
 import { useSearchParams } from "next/navigation";
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import Image from "next/image";
+import { GET_PERSON } from "@/graphQL/queries";
 
 export default function Person() {
   const searchParams = useSearchParams();
 
   const id = searchParams.get("id");
 
-  const GET_PERSON = gql`
-    query PersonQuery($personId: ID!) {
-      person(id: $personId) {
-        id
-        birthYear
-        eyeColor
-        films {
-          title
-        }
-        homeworld {
-          name
-        }
-        mass
-        image
-        gender
-        hairColor
-        height
-        name
-        skinColor
-        species {
-          language
-          name
-        }
-        starships {
-          image
-          manufacturer
-          model
-          name
-          pilots {
-            name
-          }
-        }
-        vehicles {
-          manufacturer
-          name
-          model
-          pilots {
-            name
-          }
-        }
-      }
-    }
-  `;
   const { data, error, loading } = useQuery(GET_PERSON, {
     variables: { personId: id },
   });

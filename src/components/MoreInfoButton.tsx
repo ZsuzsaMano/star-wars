@@ -2,9 +2,9 @@ import { gql, useQuery } from "@apollo/client";
 import Link from "next/link";
 import { FC } from "react";
 
-interface MoreInfoProps {
+type MoreInfoProps = {
   personId: number;
-}
+};
 
 export const MoreInfoButton: FC<MoreInfoProps> = ({ personId }) => {
   return (
