@@ -91,6 +91,7 @@ const config: Config = {
       xl: "1440px",
     },
     fontSize: {
+      "2xs": "0.75rem",
       xs: "0.875rem",
       sm: "1rem",
       base: "1.125rem",

@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import Image from "next/image";
 import { GET_PERSON } from "@/graphQL/queries";
 import { PersonQueryProps } from "@/types/shared.types";
+import { Loader } from "@/components/Loader";
 
 export default function Person() {
   const searchParams = useSearchParams();
@@ -14,7 +15,7 @@ export default function Person() {
   });
   const person = data?.person;
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loader />;
 
   if (error) return <p>{error.message}</p>;
   if (person)

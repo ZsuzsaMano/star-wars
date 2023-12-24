@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, FC, useEffect, Dispatch, SetStateAction } from "react";
-import { useQuery, gql } from "@apollo/client";
+import { FC } from "react";
+import { useQuery } from "@apollo/client";
 import { Frame } from "./Frame";
 import { SearchProps, allPeopleQueryProps } from "@/types/shared.types";
 import { GET_PEOPLE } from "@/graphQL/queries";
+import { Loader } from "./Loader";
 
 type People = {
   filterValues: SearchProps;
@@ -15,7 +16,7 @@ export const People: FC<People> = ({ filterValues }) => {
   /** this is what the graphQl query returns */
   const { data, error, loading } = useQuery<allPeopleQueryProps>(GET_PEOPLE);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loader />;
 
   if (error) return <p>Error : {error.message}</p>;
 
