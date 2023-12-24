@@ -13,7 +13,10 @@ export const Squad: FC = () => {
         Include up to <strong> five </strong> characters of various species from
         the search results
       </span>
-      <div className="flex w-full my-2 flex-wrap gap-2 md:gap-4 justify-center">
+      <div
+        data-cy="squad"
+        className="flex w-full my-2 flex-wrap gap-2 md:gap-4 justify-center"
+      >
         {squad &&
           squad.map((person) => {
             return <Frame key={person.id} person={person} isSquad={true} />;

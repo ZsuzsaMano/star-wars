@@ -58,6 +58,7 @@ export const Frame: FC<Frame> = ({ person, isSquad, filterValues }) => {
         <figure>
           <div className="rounded-md relative">
             <button
+              data-cy={"toggle-button " + person.id}
               onClick={
                 isSquad
                   ? () => removeFromSquad(person)
@@ -78,7 +79,9 @@ export const Frame: FC<Frame> = ({ person, isSquad, filterValues }) => {
           </div>
           <figcaption className="p-2">
             <p className="text-xs text-bluegray">{person.species?.name}</p>
-            <p className="text-base font-bold">{person.name}</p>
+            <p className="text-base font-bold" data-cy="name">
+              {person.name}
+            </p>
           </figcaption>
           <MoreInfoButton personId={person.id} />
         </figure>

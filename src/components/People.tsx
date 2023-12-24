@@ -22,7 +22,10 @@ export const People: FC<People> = ({ filterValues }) => {
 
   return (
     <section>
-      <div className="flex flex-wrap gap-2 md:gap-4 w-full my-2 justify-center">
+      <div
+        className="flex flex-wrap gap-2 md:gap-4 w-full my-2 justify-center"
+        data-cy="people"
+      >
         {data &&
           data.allPeople.map((person: any) => {
             return (
