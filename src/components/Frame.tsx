@@ -77,9 +77,9 @@ export const Frame: FC<Frame> = ({ person, isSquad, filterValues }) => {
               </span>
             </button>
           </div>
-          <figcaption className="p-2">
-            <p className="text-xs text-bluegray">{person.species?.name}</p>
-            <p className="text-base font-bold" data-cy="name">
+          <figcaption className="px-1">
+            <p className="text-xs text-bluegray h-4">{person.species?.name}</p>
+            <p className="text-base font-bold line-clamp-2 h-14" data-cy="name">
               {person.name}
             </p>
           </figcaption>
