@@ -57,27 +57,28 @@ export const Frame: FC<Frame> = ({ person, isSquad, filterValues }) => {
       >
         <figure>
           <div className="rounded-md relative">
-            <Image
-              src={person.image || ""}
-              width={500}
-              height={500}
-              alt={person.name || ""}
-              className="rounded-md hover:opacity-50 active:opacity-50"
-            />
             <button
-              className="absolute top-1 left-4 w-10 h-10 text-5xl"
               onClick={
                 isSquad
                   ? () => removeFromSquad(person)
                   : () => addToSquad(person)
               }
             >
-              {isSquad ? "-" : "+"}
+              <Image
+                src={person.image || ""}
+                width={500}
+                height={500}
+                alt={person.name || ""}
+                className="rounded-md hover:opacity-50 active:opacity-50"
+              />
+              <span className="absolute top-2 right-2 w-8 h-8 pb-1 text-xl bg-white rounded-full flex justify-center items-center leading-none">
+                {isSquad ? "-" : "+"}
+              </span>
             </button>
           </div>
-          <figcaption className="p-2 text-center">
-            <strong>{person.name}</strong>
-            <p>{person.species?.name}</p>
+          <figcaption className="p-2">
+            <p className="text-xs text-bluegray">{person.species?.name}</p>
+            <p className="text-base font-bold">{person.name}</p>
           </figcaption>
           <MoreInfoButton personId={person.id} />
         </figure>

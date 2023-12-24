@@ -46,11 +46,11 @@ const config: Config = {
           },
         },
         h3: {
-          fontSize: theme("fontSize.lg"),
+          fontSize: theme("fontSize.md"),
           lineHeight: theme("lineHeight.sm"),
-          fontWeight: theme("fontWeight.medium"),
+          fontWeight: theme("fontWeight.extrabold"),
           [`@media (min-width: ${md})`]: {
-            fontSize: theme("fontSize.2xl"),
+            fontSize: theme("fontSize.lg"),
           },
         },
         h4: {
@@ -66,7 +66,6 @@ const config: Config = {
           fontSize: theme("fontSize.xs"),
           lineHeight: theme("lineHeight.btn"),
           fontWeight: theme("fontWeight.medium"),
-          textTransform: "uppercase",
           letterSpacing: theme("letterSpacing.wide"),
           [`@media (min-width: ${md})`]: {
             fontSize: theme("fontSize.sm"),
@@ -82,6 +81,10 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+      colors: {
+        blue: "#3479E8",
+        bluegray: "#65758B",
       },
     },
     screens: {

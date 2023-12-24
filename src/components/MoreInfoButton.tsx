@@ -16,7 +16,9 @@ export const MoreInfoButton: FC<MoreInfoProps> = ({ personId }) => {
         },
       }}
     >
-      <button>More info</button>
+      <button className="bg-blue text-white w-full rounded-md">
+        More info
+      </button>
     </Link>
   );
 };
