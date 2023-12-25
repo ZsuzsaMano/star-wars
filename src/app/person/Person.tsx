@@ -27,7 +27,7 @@ export default function Person() {
   if (error) return <p>{error.message}</p>;
   if (person)
     return (
-      <main className="min-h-screen max-w-5xl mx-auto p-4 md:flex">
+      <main className="max-w-5xl mx-auto p-4 md:flex">
         <Image
           src={person.image || ""}
           width={500}
