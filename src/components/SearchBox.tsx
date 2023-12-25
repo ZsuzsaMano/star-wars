@@ -22,14 +22,14 @@ export const SearchBox: FC = () => {
     <section className="w-full p-2 my-4 rounded-md border border-black">
       <div className="flex flex-wrap">
         <input
-          className="p-2 text-sm w-full md:w-1/2 outline-2 placeholder:text-gray-500 rounded-md"
+          className="p-2 text-sm w-full md:w-1/2 outline-2 placeholder:text-gray-500 rounded-md shadow-[1px_1px_2px_1px_#a2a2ad]"
           placeholder="character search"
           onChange={(e) => {
             handleSearch(e.target.value);
           }}
         />
 
-        <div onChange={onGenderChange} className="flex gap-4 items-center">
+        <div onChange={onGenderChange} className="flex gap-4 items-center my-3">
           <span>
             <input
               type="radio"
