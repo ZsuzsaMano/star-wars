@@ -1,4 +1,4 @@
-import React, { FC, Dispatch, SetStateAction } from "react";
+import React, { FC, Dispatch, SetStateAction, useState } from "react";
 
 type AuthModalProps = {
   setShowModal: Dispatch<SetStateAction<boolean>>;
@@ -6,6 +6,11 @@ type AuthModalProps = {
 };
 
 export const AuthModal: FC<AuthModalProps> = ({ setShowModal, showModal }) => {
+  const [formState, setFormState] = useState({
+    login: true,
+    email: "",
+    password: "",
+  });
   return (
     <>
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
@@ -21,17 +26,23 @@ export const AuthModal: FC<AuthModalProps> = ({ setShowModal, showModal }) => {
               <input
                 className="p-2 text-sm w-full md:w-1/2 outline-2 placeholder:text-gray-500 rounded-md shadow-[1px_1px_2px_1px_#a2a2ad]"
                 placeholder="email"
-                // onChange={(e) => {
-                //   handleSearch(e.target.value);
-                // }}
+                onChange={(e) =>
+                  setFormState({
+                    ...formState,
+                    email: e.target.value,
+                  })
+                }
               />
               <input
                 className="p-2 text-sm w-full md:w-1/2 outline-2 placeholder:text-gray-500 rounded-md shadow-[1px_1px_2px_1px_#a2a2ad]"
                 placeholder="password"
                 type="password"
-                // onChange={(e) => {
-                //   handleSearch(e.target.value);
-                // }}
+                onChange={(e) =>
+                  setFormState({
+                    ...formState,
+                    password: e.target.value,
+                  })
+                }
               />
             </div>
             {/*footer*/}
