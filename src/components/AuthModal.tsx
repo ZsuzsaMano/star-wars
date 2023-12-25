@@ -24,7 +24,7 @@ export const AuthModal: FC<AuthModalProps> = ({ setShowModal, showModal }) => {
             {/*body*/}
             <div className="flex flex-col p-6 gap-4">
               <input
-                className="p-2 text-sm w-full md:w-1/2 outline-2 placeholder:text-gray-500 rounded-md shadow-[1px_1px_2px_1px_#a2a2ad]"
+                className="p-2 text-sm w-full outline-2 placeholder:text-gray-500 rounded-md shadow-[1px_1px_2px_1px_#a2a2ad]"
                 placeholder="email"
                 onChange={(e) =>
                   setFormState({
@@ -34,7 +34,7 @@ export const AuthModal: FC<AuthModalProps> = ({ setShowModal, showModal }) => {
                 }
               />
               <input
-                className="p-2 text-sm w-full md:w-1/2 outline-2 placeholder:text-gray-500 rounded-md shadow-[1px_1px_2px_1px_#a2a2ad]"
+                className="p-2 text-sm w-full outline-2 placeholder:text-gray-500 rounded-md shadow-[1px_1px_2px_1px_#a2a2ad]"
                 placeholder="password"
                 type="password"
                 onChange={(e) =>
