@@ -86,6 +86,15 @@ const config: Config = {
         blue: "#3479E8",
         bluegray: "#65758B",
       },
+      keyframes: {
+        animate: {
+          "0%": { width: "0%" },
+          "25%": { width: "10%" },
+          "50% ": { width: "40%" },
+          "75%": { width: "50%" },
+          "100%": { width: "100%" },
+        },
+      },
     },
     screens: {
       sm: "600px",
