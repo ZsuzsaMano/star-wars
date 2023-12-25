@@ -24,7 +24,7 @@ const config: Config = {
       addUtilities({
         body: {
           fontSize: theme("fontSize.xs"),
-          lineHeight: theme("lineHeight.lg"),
+          lineHeight: theme("lineHeight.sm"),
           [`@media (min-width: ${md})`]: {
             fontSize: theme("fontSize.base"),
           },
@@ -63,13 +63,13 @@ const config: Config = {
         },
 
         button: {
-          fontSize: theme("fontSize.xs"),
+          fontSize: theme("fontSize.2xs"),
           lineHeight: theme("lineHeight.btn"),
-          fontWeight: theme("fontWeight.medium"),
+          fontWeight: theme("fontWeight.semibold"),
           letterSpacing: theme("letterSpacing.wide"),
           [`@media (min-width: ${md})`]: {
             fontSize: theme("fontSize.sm"),
-            lineHeight: theme("lineHeight.sm"),
+            lineHeight: theme("lineHeight.xs"),
           },
         },
       });

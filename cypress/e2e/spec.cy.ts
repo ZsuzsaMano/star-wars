@@ -1,4 +1,4 @@
-// I know I didn't go crazy with testing, but let the one who never had technical dept cast the first stone. :P
+// I know I not have tested thoroughly, but let the person without technical debt throw the first stone. :P
 
 describe("main functionalities", () => {
   it("loads people, goes to detail page and back", () => {

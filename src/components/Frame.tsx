@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import Image from "next/image";
-import { PersonProps, SearchProps, SquadProps } from "@/types/shared.types";
-import classNames from "classnames";
+import { PersonProps, SearchProps } from "@/types/shared.types";
 import { MoreInfoButton } from "./MoreInfoButton";
 import { useSquadStore } from "@/store/zustand";
 
@@ -49,12 +48,7 @@ export const Frame: FC<Frame> = ({ person, isSquad, filterValues }) => {
     return null;
   if (person)
     return (
-      <div
-        className={classNames(
-          "shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] rounded-md",
-          isSquad ? "w-28" : "w-36 h-60"
-        )}
-      >
+      <div className="shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] rounded-md w-24 md:w-36 ">
         <figure>
           <div className="rounded-md relative">
             <button
@@ -78,8 +72,13 @@ export const Frame: FC<Frame> = ({ person, isSquad, filterValues }) => {
             </button>
           </div>
           <figcaption className="px-1">
-            <p className="text-xs text-bluegray h-4">{person.species?.name}</p>
-            <p className="text-base font-bold line-clamp-2 h-14" data-cy="name">
+            <p className="text-2xs md:text-xs text-bluegray line-clamp-1 h-4">
+              {person.species?.name}
+            </p>
+            <p
+              className="text-sm md:text-base font-semibold line-clamp-2 h-12"
+              data-cy="name"
+            >
               {person.name}
             </p>
           </figcaption>
