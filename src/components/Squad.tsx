@@ -1,14 +1,26 @@
-import React, { FC, Dispatch, SetStateAction } from "react";
+import React, { FC, useState } from "react";
 import { Frame } from "./Frame";
 import { useSquadStore } from "@/store/zustand";
+import { AuthModal } from "./AuthModal";
 
 /** displaying the created squad */
 export const Squad: FC = () => {
   const { squad } = useSquadStore();
-
+  const [showModal, setShowModal] = useState(false);
   return (
     <section className="w-full">
-      <h2>Your Squad</h2>{" "}
+      <div className="flex justify-between">
+        <h2>Your Squad</h2>{" "}
+        <button
+          className="ml-12 shadow-[4.0px_4.0px_4.0px_rgba(0,0,0,0.38)] rounded-md px-4"
+          onClick={() => setShowModal(true)}
+        >
+          Login
+        </button>
+        {showModal ? (
+          <AuthModal setShowModal={setShowModal} showModal={showModal} />
+        ) : null}
+      </div>
       <span>
         Include up to <strong> five </strong> characters of various species from
         the search results
