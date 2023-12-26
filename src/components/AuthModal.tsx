@@ -1,4 +1,4 @@
-import { SIGNUP } from "@/graphQL/mutations";
+import { LOGIN, SIGNUP } from "@/graphQL/mutations";
 import { useMutation } from "@apollo/client";
 import React, {
   FC,
@@ -15,20 +15,25 @@ type AuthModalProps = {
 
 export const AuthModal: FC<AuthModalProps> = ({ setShowModal, showModal }) => {
   const [isLogin, setIsLogin] = useState<boolean>(true);
+  const [signup, { data, loading, error }] = useMutation(SIGNUP);
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    console.log("formData", formData);
-    // signUp({ variables: { formData } });
+    signup({
+      variables: {
+        email: formData.get("email"),
+        password: formData.get("password"),
+      },
+      onCompleted: ({ signup }) => {
+        localStorage.setItem("token", signup.token);
+      },
+    });
   }
 
-  // const [signUp, { data, loading, error }] = useMutation(SIGNUP);
+  if (loading) return "Submitting...";
 
-  // if (loading) return "Submitting...";
-
-  // if (error) return `Submission error! ${error.message}`;
-
+  if (error) alert(error.message);
   return (
     <>
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
