@@ -3,7 +3,11 @@
 import { FC } from "react";
 import { useQuery } from "@apollo/client";
 import { Frame } from "./Frame";
-import { SearchProps, allPeopleQueryProps } from "@/types/shared.types";
+import {
+  PersonProps,
+  SearchProps,
+  allPeopleQueryProps,
+} from "@/types/shared.types";
 import { GET_PEOPLE } from "@/graphQL/queries";
 import { Loader } from "./Loader";
 
@@ -27,7 +31,7 @@ export const People: FC<People> = ({ filterValues }) => {
         data-cy="people"
       >
         {data &&
-          data.allPeople.map((person: any) => {
+          data.allPeople.map((person: PersonProps) => {
             return (
               <Frame
                 key={person.id}

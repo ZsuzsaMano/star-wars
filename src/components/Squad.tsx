@@ -1,4 +1,4 @@
-import React, { FC, Dispatch, SetStateAction } from "react";
+import React, { FC } from "react";
 import { Frame } from "./Frame";
 import { useSquadStore } from "@/store/zustand";
 

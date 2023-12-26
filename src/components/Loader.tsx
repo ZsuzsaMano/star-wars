@@ -3,7 +3,6 @@ import hilt from "../app/assets/lightsaber-hilt.png";
 
 export const Loader = () => {
   return (
-    ////https://codepen.io/andyNroses/pen/oqqNbM when I have time will rewrite with tailwind
     <div>
       Loading...
       <div className="flex items-center">
