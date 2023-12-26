@@ -46,13 +46,7 @@ export const SearchBox: FC = () => {
             <input type="radio" value="hermaphrodite" name="gender" /> Divers
           </span>
           <span>
-            <input
-              type="radio"
-              value="all"
-              name="gender"
-              checked={filterValues.gender === "all"}
-            />{" "}
-            All
+            <input type="radio" value="all" name="gender" defaultChecked /> All
           </span>
         </div>
       </div>
