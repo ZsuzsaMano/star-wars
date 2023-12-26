@@ -5,9 +5,11 @@ type AuthModalProps = {
   showModal: boolean;
 };
 
+type FormStateProps = { isLogin: boolean; email: string; password: string };
+
 export const AuthModal: FC<AuthModalProps> = ({ setShowModal, showModal }) => {
-  const [formState, setFormState] = useState({
-    login: true,
+  const [formState, setFormState] = useState<FormStateProps>({
+    isLogin: true,
     email: "",
     password: "",
   });
@@ -19,7 +21,7 @@ export const AuthModal: FC<AuthModalProps> = ({ setShowModal, showModal }) => {
           <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             {/*header*/}
             <div className="flex justify-between p-4 rounded-t">
-              <h3>Login / Sign up</h3>
+              <h3>{formState.isLogin ? "Login" : "Sign up"}</h3>
             </div>
             {/*body*/}
             <div className="flex flex-col p-6 gap-4">
@@ -44,7 +46,18 @@ export const AuthModal: FC<AuthModalProps> = ({ setShowModal, showModal }) => {
                   })
                 }
               />
+              <button
+                className="text-blue md:text-xs text-left"
+                onClick={() => {
+                  setFormState({ ...formState, isLogin: !formState.isLogin });
+                }}
+              >
+                {formState.isLogin
+                  ? "No account yet? Sign up!"
+                  : "Already registered? Login!"}
+              </button>
             </div>
+
             {/*footer*/}
             <div className="flex items-center justify-end">
               <button
@@ -59,7 +72,7 @@ export const AuthModal: FC<AuthModalProps> = ({ setShowModal, showModal }) => {
                 type="button"
                 onClick={() => setShowModal(false)}
               >
-                Submit
+                {formState.isLogin ? "Login" : "Sign up"}
               </button>
             </div>
           </div>
