@@ -12,7 +12,7 @@ export const Squad: FC = () => {
       <div className="flex justify-between">
         <h2>Your Squad</h2>{" "}
         <button
-          className="ml-12 shadow-[4.0px_4.0px_4.0px_rgba(0,0,0,0.38)] rounded-md px-4"
+          className="ml-12 shadow-[3.0px_3.0px_3.0px_rgba(0,0,0,0.18)] rounded-md px-4"
           onClick={() => setShowModal(true)}
         >
           Login
