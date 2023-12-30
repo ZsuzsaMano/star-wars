@@ -8,6 +8,13 @@ import React, {
   FormEvent,
 } from "react";
 
+//TODO:
+// - encrypt password with bcrypt
+// - does user already exist?
+// - is password correct?
+// - retrive token from storage
+// - logout clear storage/ remove user data
+
 type AuthModalProps = {
   setShowModal: Dispatch<SetStateAction<boolean>>;
   showModal: boolean;
@@ -53,12 +60,16 @@ export const AuthModal: FC<AuthModalProps> = ({ setShowModal, showModal }) => {
                 className="p-2 text-sm w-full outline-2 placeholder:text-gray-500 rounded-md shadow-[1px_1px_2px_1px_#a2a2ad]"
                 placeholder="email"
                 name="email"
+                required
+                type="email"
               />
               <input
                 className="p-2 text-sm w-full outline-2 placeholder:text-gray-500 rounded-md shadow-[1px_1px_2px_1px_#a2a2ad]"
                 placeholder="password"
                 type="password"
                 name="password"
+                required
+                minLength={6}
               />
               <button
                 className="text-blue md:text-xs text-left"
@@ -85,6 +96,7 @@ export const AuthModal: FC<AuthModalProps> = ({ setShowModal, showModal }) => {
               <button
                 className="bg-blue text-white active:bg-emerald-600 font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 type="submit"
+                // disabled={!isFormValid}
               >
                 {isLogin ? "Login" : "Sign up"}
               </button>
