@@ -5,9 +5,13 @@ type SquadStore = {
   squad: [] | PersonProps[];
   addToSquad: (person: PersonProps) => void;
   removeFromSquad: (person: PersonProps) => void;
+  isLoggedIn: boolean;
+  toggleIsLoggedIn: () => void;
 };
 
 export const useSquadStore = create<SquadStore>((set) => ({
+  isLoggedIn: false,
+  toggleIsLoggedIn: () => set((state) => ({ isLoggedIn: !state.isLoggedIn })),
   squad: [],
   addToSquad: (person) =>
     set((state) =>
