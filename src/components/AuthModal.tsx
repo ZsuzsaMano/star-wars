@@ -1,4 +1,5 @@
 import { LOGIN, SIGNUP } from "@/graphQL/mutations";
+import { encryptPassword } from "@/utils/encode";
 import { useMutation } from "@apollo/client";
 import React, {
   FC,
@@ -9,7 +10,6 @@ import React, {
 } from "react";
 
 //TODO:
-// - encrypt password with bcrypt
 // - does user already exist?
 // - is password correct?
 // - retrive token from storage
@@ -24,19 +24,22 @@ export const AuthModal: FC<AuthModalProps> = ({ setShowModal, showModal }) => {
   const [isLogin, setIsLogin] = useState<boolean>(true);
   const [signup, { data, loading, error }] = useMutation(SIGNUP);
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
+    const email = formData.get("email");
+    const passwordRaw = formData.get("password") as string;
+    const password = await encryptPassword(passwordRaw);
     signup({
       variables: {
-        email: formData.get("email"),
-        password: formData.get("password"),
+        email: email,
+        password: password,
       },
       onCompleted: ({ signup }) => {
         localStorage.setItem("token", signup.token);
       },
     });
-  }
+  };
 
   if (loading) return "Submitting...";
 
