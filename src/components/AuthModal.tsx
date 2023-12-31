@@ -39,7 +39,7 @@ export const AuthModal: FC<AuthModalProps> = ({ setShowModal, showModal }) => {
       onCompleted: ({ signup }) => {
         localStorage.setItem("token", signup.token);
         setShowModal(false);
-        state.toggleIsLoggedIn();
+        state.toggleIsLoggedIn(true);
       },
     });
   };

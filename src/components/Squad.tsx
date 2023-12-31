@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Frame } from "./Frame";
 import { useSquadStore } from "@/store/zustand";
 import { AuthModal } from "./AuthModal";
@@ -8,13 +8,18 @@ export const Squad: FC = () => {
   const { squad, isLoggedIn } = useSquadStore();
   const state = useSquadStore();
 
+  useEffect(() => {
+    const isToken = localStorage.getItem("token");
+    if (isToken) state.toggleIsLoggedIn(true);
+  }, []);
+
   /** the popup login modal */
   const [showModal, setShowModal] = useState(false);
 
   /** when clicking logout button remove token and change login state to false*/
   const onLogout = () => {
     localStorage.removeItem("token");
-    state.toggleIsLoggedIn();
+    state.toggleIsLoggedIn(false);
   };
   return (
     <section className="w-full">
