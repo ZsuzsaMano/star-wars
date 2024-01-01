@@ -30,8 +30,8 @@ export const AuthModal: FC<AuthModalProps> = ({ setShowModal, showModal }) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const email = formData.get("email");
-    const passwordRaw = formData.get("password") as string;
-    const password = await encryptPassword(passwordRaw);
+    const password = formData.get("password") as string;
+    // const password = await encryptPassword(passwordRaw);
 
     await loginSignup({
       variables: {
