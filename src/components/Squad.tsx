@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import { Frame } from "./Frame";
 import { useSquadStore } from "@/store/zustand";
 import { AuthModal } from "./AuthModal";
+import client from "@/graphQL/apollo_client";
 
 /** displaying the created squad */
 export const Squad: FC = () => {
@@ -21,6 +22,7 @@ export const Squad: FC = () => {
     localStorage.removeItem("token");
     state.toggleIsLoggedIn(false);
     state.setUser(null);
+    client.resetStore();
   };
   return (
     <section className="w-full">
