@@ -12,8 +12,8 @@ import { AuthForm } from "./AuthForm";
 import { useSquadStore } from "@/store/zustand";
 
 //TODO:
+//-  add login (for already signup user)
 // - add squad mutation
-// - retrive token from storage
 
 type AuthModalProps = {
   setShowModal: Dispatch<SetStateAction<boolean>>;
@@ -22,7 +22,8 @@ type AuthModalProps = {
 
 export const AuthModal: FC<AuthModalProps> = ({ setShowModal, showModal }) => {
   const [isLogin, setIsLogin] = useState<boolean>(true);
-  const [signup, { data, loading, error }] = useMutation(SIGNUP);
+  const mutation = isLogin ? LOGIN : SIGNUP;
+  const [loginSignup, { data, loading, error }] = useMutation(mutation);
   const state = useSquadStore();
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -31,17 +32,22 @@ export const AuthModal: FC<AuthModalProps> = ({ setShowModal, showModal }) => {
     const email = formData.get("email");
     const passwordRaw = formData.get("password") as string;
     const password = await encryptPassword(passwordRaw);
-    signup({
-      variables: {
-        email: email,
-        password: password,
-      },
-      onCompleted: ({ signup }) => {
-        localStorage.setItem("token", signup.token);
-        setShowModal(false);
-        state.toggleIsLoggedIn(true);
-      },
-    });
+
+    try {
+      await loginSignup({
+        variables: {
+          email: email,
+          password: password,
+        },
+        onCompleted: ({ signup }) => {
+          localStorage.setItem("token", signup.token);
+          setShowModal(false);
+          state.toggleIsLoggedIn(true);
+        },
+      });
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   if (loading) return "Submitting...";
