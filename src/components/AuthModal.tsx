@@ -46,7 +46,7 @@ export const AuthModal: FC<AuthModalProps> = ({ setShowModal, showModal }) => {
         state.toggleIsLoggedIn(true);
         state.setUser({ email: loginSignupData.email, id: loginSignupData.id });
       },
-      onError: (e) => console.log(e),
+      onError: (e) => console.log(e.message),
     });
   };
 
