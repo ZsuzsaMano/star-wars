@@ -33,21 +33,19 @@ export const AuthModal: FC<AuthModalProps> = ({ setShowModal, showModal }) => {
     const passwordRaw = formData.get("password") as string;
     const password = await encryptPassword(passwordRaw);
 
-    try {
-      await loginSignup({
-        variables: {
-          email: email,
-          password: password,
-        },
-        onCompleted: ({ signup }) => {
-          localStorage.setItem("token", signup.token);
-          setShowModal(false);
-          state.toggleIsLoggedIn(true);
-        },
-      });
-    } catch (e) {
-      console.error(e);
-    }
+    await loginSignup({
+      variables: {
+        email: email,
+        password: password,
+      },
+      onCompleted: (data) => {
+        const token: string = isLogin ? data.login.token : data.signup.token;
+        localStorage.setItem("token", token);
+        setShowModal(false);
+        state.toggleIsLoggedIn(true);
+      },
+      onError: (e) => console.log(e),
+    });
   };
 
   if (loading) return "Submitting...";
