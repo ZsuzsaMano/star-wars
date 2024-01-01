@@ -8,7 +8,7 @@ type SquadStore = {
   isLoggedIn: boolean;
   toggleIsLoggedIn: (is: boolean) => void;
   user: { email: String; id: Number } | null;
-  setUser: (user: { email: String; id: Number }) => void;
+  setUser: (user: { email: String; id: Number } | null) => void;
 };
 
 export const useSquadStore = create<SquadStore>((set) => ({

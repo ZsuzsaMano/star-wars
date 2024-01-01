@@ -20,6 +20,7 @@ export const Squad: FC = () => {
   const onLogout = () => {
     localStorage.removeItem("token");
     state.toggleIsLoggedIn(false);
+    state.setUser(null);
   };
   return (
     <section className="w-full">

@@ -13,8 +13,8 @@ import { useSquadStore } from "@/store/zustand";
 import { Loader } from "./Loader";
 
 //TODO:
-//-  add login (for already signup user)
 // - add squad mutation
+//- check bcrypt bug
 
 type AuthModalProps = {
   setShowModal: Dispatch<SetStateAction<boolean>>;
@@ -29,6 +29,7 @@ export const AuthModal: FC<AuthModalProps> = ({ setShowModal, showModal }) => {
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    /** get data from form */
     const formData = new FormData(event.currentTarget);
     const email = formData.get("email");
     const password = formData.get("password") as string;
@@ -40,10 +41,15 @@ export const AuthModal: FC<AuthModalProps> = ({ setShowModal, showModal }) => {
         password: password,
       },
       onCompleted: (data) => {
+        /** data structure depending if it is login or signup */
         const loginSignupData = isLogin ? data.login : data.signup;
+        /** store token */
         localStorage.setItem("token", loginSignupData.token);
+        /** close modal */
         setShowModal(false);
+        /** set Zustand state to Logged in*/
         state.toggleIsLoggedIn(true);
+        /** store returned userdata in Zustand */
         state.setUser({ email: loginSignupData.email, id: loginSignupData.id });
       },
       onError: (e) => console.log(e.message),
