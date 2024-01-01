@@ -13,15 +13,8 @@ interface Frame {
 
 /** cards used both in squad and search results */
 export const Frame: FC<Frame> = ({ person, isSquad, filterValues }) => {
-  const { squad, addToSquad, removeFromSquad } = useSquadStore((state) => {
-    return {
-      squad: state.squad,
-      /** add to squad component */
-      addToSquad: state.addToSquad,
-      /** in squad component remove*/
-      removeFromSquad: state.removeFromSquad,
-    };
-  });
+  const state = useSquadStore();
+  const squad = state.squad;
 
   /** if person already in Squad dont show it in search results*/
   if (!isSquad && squad?.filter((item) => item.id === person?.id).length != 0)
@@ -55,8 +48,8 @@ export const Frame: FC<Frame> = ({ person, isSquad, filterValues }) => {
               data-cy={"toggle-button " + person.id}
               onClick={
                 isSquad
-                  ? () => removeFromSquad(person)
-                  : () => addToSquad(person)
+                  ? () => state.removeFromSquad(person)
+                  : () => state.addToSquad(person)
               }
             >
               <Image
