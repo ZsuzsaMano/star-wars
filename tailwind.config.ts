@@ -85,6 +85,7 @@ const config: Config = {
       colors: {
         blue: "#3479E8",
         bluegray: "#65758B",
+        red: "#ff0000",
       },
       keyframes: {
         animate: {
