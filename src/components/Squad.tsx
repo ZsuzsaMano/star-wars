@@ -3,11 +3,23 @@ import { Frame } from "./Frame";
 import { useSquadStore } from "@/store/zustand";
 import { AuthModal } from "./AuthModal";
 import client from "@/graphQL/apollo_client";
+import classNames from "classnames";
+import { PersonProps } from "@/types/shared.types";
 
 /** displaying the created squad */
 export const Squad: FC = () => {
   const { squad, isLoggedIn } = useSquadStore();
   const state = useSquadStore();
+
+  const squadSize = squad.length;
+  const squadSizeMessage =
+    squadSize < 3
+      ? `You have to add at least ${
+          3 - squadSize
+        } more character(s) to your squad`
+      : squadSize === 5
+      ? "Your squad is complete. You can't add more characters to your squad"
+      : "Include 3 to 5 characters of various species from the search results";
 
   useEffect(() => {
     const isToken = localStorage.getItem("token");
@@ -38,16 +50,15 @@ export const Squad: FC = () => {
           <AuthModal setShowModal={setShowModal} showModal={showModal} />
         ) : null}
       </div>
-      <span>
-        Include up to <strong> five </strong> characters of various species from
-        the search results
+      <span className={classNames("text-xs", squadSize < 3 && "text-red")}>
+        {squadSizeMessage}
       </span>
       <div
         data-cy="squad"
         className="flex w-full my-2 flex-wrap gap-2 md:gap-4 justify-center"
       >
         {squad &&
-          squad.map((person) => {
+          squad.map((person: PersonProps) => {
             return <Frame key={person.id} person={person} isSquad={true} />;
           })}
       </div>
