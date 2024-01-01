@@ -10,6 +10,7 @@ import React, {
 } from "react";
 import { AuthForm } from "./AuthForm";
 import { useSquadStore } from "@/store/zustand";
+import { Loader } from "./Loader";
 
 //TODO:
 //-  add login (for already signup user)
@@ -39,29 +40,32 @@ export const AuthModal: FC<AuthModalProps> = ({ setShowModal, showModal }) => {
         password: password,
       },
       onCompleted: (data) => {
-        const token: string = isLogin ? data.login.token : data.signup.token;
-        localStorage.setItem("token", token);
+        const loginSignupData = isLogin ? data.login : data.signup;
+        localStorage.setItem("token", loginSignupData.token);
         setShowModal(false);
         state.toggleIsLoggedIn(true);
+        state.setUser({ email: loginSignupData.email, id: loginSignupData.id });
       },
       onError: (e) => console.log(e),
     });
   };
-
-  if (loading) return "Submitting...";
 
   return (
     <>
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
         <div className="relative w-auto my-6 mx-auto max-w-3xl">
           {/*content*/}
-          <AuthForm
-            isLogin={isLogin}
-            onSubmit={onSubmit}
-            setIsLogin={setIsLogin}
-            setShowModal={setShowModal}
-            error={error?.message}
-          />
+          {loading ? (
+            <Loader />
+          ) : (
+            <AuthForm
+              isLogin={isLogin}
+              onSubmit={onSubmit}
+              setIsLogin={setIsLogin}
+              setShowModal={setShowModal}
+              error={error?.message}
+            />
+          )}
         </div>
       </div>
       <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
