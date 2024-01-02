@@ -23,3 +23,15 @@ export const SIGNUP = gql`
     }
   }
 `;
+
+export const CREATE_SQUAD = gql`
+  mutation createSquad($name: String!, $characters: [ID!]!) {
+    createSquad(name: $name, characters: $characters) {
+      id
+      name
+      characters {
+        name
+      }
+    }
+  }
+`;

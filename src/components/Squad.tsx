@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import { Frame } from "./Frame";
 import { useSquadStore } from "@/store/zustand";
 import { AuthModal } from "./AuthModal";
+import { SquadSubmitForm } from "./SquadSubmitForm";
 import client from "@/graphQL/apollo_client";
 import classNames from "classnames";
 import { PersonProps } from "@/types/shared.types";
@@ -62,6 +63,7 @@ export const Squad: FC = () => {
             return <Frame key={person.id} person={person} isSquad={true} />;
           })}
       </div>
+      {isLoggedIn && <SquadSubmitForm />}
     </section>
   );
 };
