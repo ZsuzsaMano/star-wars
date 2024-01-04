@@ -12,10 +12,6 @@ import { AuthForm } from "./AuthForm";
 import { useSquadStore } from "@/store/zustand";
 import { Loader } from "./Loader";
 
-//TODO:
-// - add squad mutation
-//- check bcrypt bug
-
 type AuthModalProps = {
   setShowModal: Dispatch<SetStateAction<boolean>>;
   showModal: boolean;
