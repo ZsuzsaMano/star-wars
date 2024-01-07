@@ -25,20 +25,24 @@ export const SquadSubmitForm: FC = () => {
     });
   };
   return (
-    <form onSubmit={handleUserSquad} className="flex gap-4 w-80">
-      <input
-        className="p-2 text-sm outline-2 placeholder:text-gray-500 rounded-md shadow-[1px_1px_2px_1px_#a2a2ad]"
-        placeholder="squad name"
-        name="squadName"
-        required
-        type="text"
-      />
-      <button
-        className="bg-blue text-white active:bg-emerald-600 font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
-        type="submit"
-      >
-        Save
-      </button>
+    <form onSubmit={handleUserSquad}>
+      <div className="flex gap-4 w-80">
+        <input
+          className="p-2 text-sm outline-2 placeholder:text-gray-500 rounded-md shadow-[1px_1px_2px_1px_#a2a2ad]"
+          placeholder="squad name"
+          name="squadName"
+          required
+          type="text"
+        />
+
+        <button
+          className="bg-blue text-white active:bg-emerald-600 font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
+          type="submit"
+        >
+          Save
+        </button>
+      </div>
+      {error && <p className="text-red text-xs w-full">{error.message}</p>}
     </form>
   );
 };
