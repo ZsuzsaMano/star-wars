@@ -7,7 +7,7 @@ import { Loader } from "@/components/Loader";
 import { useRouter } from "next/navigation";
 import { MdArrowBackIos } from "react-icons/md";
 
-export default function Person() {
+export default function Character() {
   /** get query from URL */
   const searchParams = useSearchParams();
 
@@ -22,7 +22,12 @@ export default function Person() {
   });
   const person = data?.person;
 
-  if (loading) return <Loader />;
+  if (loading)
+    return (
+      <div className="max-w-5xl mx-auto">
+        <Loader />
+      </div>
+    );
 
   if (error) return <p>{error.message}</p>;
   if (person)
