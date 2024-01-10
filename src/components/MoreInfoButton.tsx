@@ -10,7 +10,7 @@ export const MoreInfoButton: FC<MoreInfoProps> = ({ personId }) => {
   return (
     <Link
       href={{
-        pathname: "/person",
+        pathname: "/characterDetails",
         query: {
           id: personId,
         },
