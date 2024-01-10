@@ -7,7 +7,7 @@ import { Loader } from "@/components/Loader";
 import { useRouter } from "next/navigation";
 import { MdArrowBackIos } from "react-icons/md";
 
-export default function Character() {
+export const Character = () => {
   /** get query from URL */
   const searchParams = useSearchParams();
 
@@ -79,4 +79,4 @@ export default function Character() {
         </div>
       </main>
     );
-}
+};

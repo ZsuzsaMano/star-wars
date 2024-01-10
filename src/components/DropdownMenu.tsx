@@ -1,5 +1,6 @@
 import client from "@/graphQL/apollo_client";
 import { useSquadStore } from "@/store/zustand";
+import Link from "next/link";
 import { Dispatch, FC, SetStateAction } from "react";
 
 type DropDownProps = {
@@ -25,14 +26,16 @@ export const DropdownMenu: FC<DropDownProps> = ({ setIsDropdown }) => {
         className="py-2  text-gray-700 dark:text-gray-200"
         aria-labelledby="dropdownDefaultButton"
       >
-        {/* <li>
-          <a
-            href="#"
+        <li>
+          <Link
+            href={{
+              pathname: "/profile",
+            }}
             className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
           >
             Profile
-          </a>
-        </li> */}
+          </Link>
+        </li>
 
         <li
           className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
