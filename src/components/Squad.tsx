@@ -1,17 +1,21 @@
 import React, { FC, useEffect, useState } from "react";
-import { Frame } from "./Frame";
 import { useSquadStore } from "@/store/zustand";
+import classNames from "classnames";
+import { CgProfile } from "react-icons/cg";
+
+import { PersonProps } from "@/types/shared.types";
+import { DropdownMenu } from "./DropdownMenu";
 import { AuthModal } from "./AuthModal";
 import { SquadSubmitForm } from "./SquadSubmitForm";
-import client from "@/graphQL/apollo_client";
-import classNames from "classnames";
-import { PersonProps } from "@/types/shared.types";
+import { Frame } from "./Frame";
 
 /** displaying the created squad */
 export const Squad: FC = () => {
   const { squad, isLoggedIn } = useSquadStore();
+  const [isDropdown, setIsDropdown] = useState<boolean>(false);
   const state = useSquadStore();
 
+  /** let user know the required squad size*/
   const squadSize = squad.length;
   const squadSizeMessage =
     squadSize < 3
@@ -30,23 +34,23 @@ export const Squad: FC = () => {
   /** the popup login modal */
   const [showModal, setShowModal] = useState(false);
 
-  /** when clicking logout button remove token and change login state to false*/
-  const onLogout = () => {
-    localStorage.removeItem("token");
-    state.toggleIsLoggedIn(false);
-    state.setUser(null);
-    client.resetStore();
-  };
   return (
     <section className="w-full">
-      <div className="flex justify-between">
+      <div className="flex justify-between relative">
         <h2>Your Squad</h2>{" "}
         <button
           className="ml-12 shadow-[3.0px_3.0px_3.0px_rgba(0,0,0,0.18)] rounded-md px-4"
-          onClick={isLoggedIn ? onLogout : () => setShowModal(true)}
+          onClick={
+            isLoggedIn
+              ? () => setIsDropdown(!isDropdown)
+              : () => setShowModal(true)
+          }
         >
-          {isLoggedIn ? "Logout" : "Login"}
+          {isLoggedIn ? <CgProfile size={28} /> : "Login"}
         </button>
+        {isDropdown && isLoggedIn && (
+          <DropdownMenu setIsDropdown={setIsDropdown} />
+        )}
         {showModal ? (
           <AuthModal setShowModal={setShowModal} showModal={showModal} />
         ) : null}
