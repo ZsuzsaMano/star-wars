@@ -9,7 +9,7 @@ export const SearchBox: FC = () => {
     gender: "all",
   });
 
-  /** get the serach string*/
+  /** get the serach string to search character by name*/
   const handleSearch = (term: string) => {
     setFilterValues({ ...filterValues, name: term } as SearchProps);
   };

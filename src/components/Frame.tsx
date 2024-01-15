@@ -3,25 +3,25 @@ import Image from "next/image";
 import { PersonProps, SearchProps } from "@/types/shared.types";
 import { MoreInfoButton } from "./MoreInfoButton";
 import { useSquadStore } from "@/store/zustand";
+import classNames from "classnames";
 
 interface Frame {
   key: number;
   person: PersonProps | null;
   isSquad: boolean;
   filterValues?: SearchProps;
+  isProfile?: boolean;
 }
 
 /** cards used both in squad and search results */
-export const Frame: FC<Frame> = ({ person, isSquad, filterValues }) => {
-  const { squad, addToSquad, removeFromSquad } = useSquadStore((state) => {
-    return {
-      squad: state.squad,
-      /** add to squad component */
-      addToSquad: state.addToSquad,
-      /** in squad component remove*/
-      removeFromSquad: state.removeFromSquad,
-    };
-  });
+export const Frame: FC<Frame> = ({
+  person,
+  isSquad,
+  filterValues,
+  isProfile,
+}) => {
+  const state = useSquadStore();
+  const squad = state.squad;
 
   /** if person already in Squad dont show it in search results*/
   if (!isSquad && squad?.filter((item) => item.id === person?.id).length != 0)
@@ -54,9 +54,11 @@ export const Frame: FC<Frame> = ({ person, isSquad, filterValues }) => {
             <button
               data-cy={"toggle-button " + person.id}
               onClick={
-                isSquad
-                  ? () => removeFromSquad(person)
-                  : () => addToSquad(person)
+                !isProfile
+                  ? isSquad
+                    ? () => state.removeFromSquad(person)
+                    : () => state.addToSquad(person)
+                  : undefined
               }
             >
               <Image
@@ -64,11 +66,16 @@ export const Frame: FC<Frame> = ({ person, isSquad, filterValues }) => {
                 width={500}
                 height={500}
                 alt={person.name || ""}
-                className="rounded-md hover:opacity-50 active:opacity-50"
+                className={classNames(
+                  "rounded-md",
+                  !isProfile && "hover:opacity-50 active:opacity-50"
+                )}
               />
-              <span className="absolute top-2 right-2 w-8 h-8 pb-1 text-xl bg-white rounded-full flex justify-center items-center leading-none">
-                {isSquad ? "-" : "+"}
-              </span>
+              {!isProfile && (
+                <span className="absolute top-2 right-2 w-8 h-8 pb-1 text-xl bg-white rounded-full flex justify-center items-center leading-none">
+                  {isSquad ? "-" : "+"}
+                </span>
+              )}
             </button>
           </div>
           <figcaption className="px-1">

@@ -40,3 +40,21 @@ export const GET_PEOPLE = gql`
     }
   }
 `;
+
+export const GET_SQUADS = gql`
+  query getSquads {
+    squads {
+      id
+      name
+      characters {
+        id
+        name
+        image
+        species {
+          id
+          name
+        }
+      }
+    }
+  }
+`;
