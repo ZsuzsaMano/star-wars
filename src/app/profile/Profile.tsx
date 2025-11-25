@@ -20,10 +20,13 @@ export const Profile: FC = () => {
   if (error) return <p>Error : {error.message}</p>;
 
   return (
-    <main className="max-w-5xl mx-auto p-4 md:flex">
-      <h3>Personal Info</h3>
-      <span className="text-blue mr-4 font-semibold leading-6">Email:</span>
-      {user?.email}
+    <main className="max-w-5xl mx-auto p-4 md:flex gap-4">
+      <section>
+        <h3>Personal Info</h3>
+
+        <span className="text-blue mr-4 font-semibold leading-6">Email:</span>
+        {user?.email}
+      </section>
       <div className="border border-gray-500 my-6 md:my-3"></div>
       <section>
         {data.squads.map((squad: SquadsProps) => {
